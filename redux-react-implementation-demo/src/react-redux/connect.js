@@ -1,25 +1,33 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React from 'react'
 import { reduxContext } from './Context'
 
 export const connect = (mapStateToProps, mapDispatchToProps) => WrapComponent => {
-  function ConnectComponent(){
-    const store = useContext(reduxContext)
-    const [value, setValue] = useState(0)
-    useEffect(() => {
-      store.subscribe(() => {
-        setValue(value + 1)
+  class ConnectComponent extends React.Component{
+    constructor(props, context) {
+      super(props)
+      const { subscribe } = context
+      this.desubscribe = subscribe(() => {
+        this.forceUpdate()
       })
-    })
-    const stateProps = mapStateToProps(store.getState())
-    const dispatchProps = {}
-    for(const key in mapDispatchToProps) {
-      dispatchProps[key] = (...args) => {
-        return store.dispatch(mapDispatchToProps[key](...args))
-      }
     }
-    const props = {...stateProps, ...dispatchProps};
-    return <WrapComponent {...props} />;
+    componentWillUnmount(){
+      this.desubscribe()
+    }
+    render(){
+      const { getState, dispatch } = this.context
+      const stateProps = mapStateToProps(getState())
+      const dispatchProps = {}
+      for(const key in mapDispatchToProps) {
+        dispatchProps[key] = (...args) => {
+          return dispatch(mapDispatchToProps[key](...args))
+        }
+      }
+      const props = {...stateProps, ...dispatchProps};
+      return <WrapComponent {...props} />;
+    }
   }
+
+  ConnectComponent.contextType = reduxContext
 
   return ConnectComponent;
 };
