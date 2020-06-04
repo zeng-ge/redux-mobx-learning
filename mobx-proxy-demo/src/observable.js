@@ -8,7 +8,11 @@ class ObservableAdministrator {
 
     for(const key in source) {
       if(key !== 'adm' && source.hasOwnProperty(key)) {
-        this.map[key] = source[key]
+        const value = source[key]
+        if(typeof value === 'object') {
+          observable(value)
+        }
+        this.map[key] = value
       }
     }
   }

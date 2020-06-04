@@ -1,4 +1,4 @@
-import { Observer } from './observer'
+import { Observer, observer } from './observer'
 
 class ObservableAdministrator {
   constructor(source) {
@@ -29,7 +29,11 @@ const generageProperty = (target, key) => {
   if(!target.adm) {
     target.adm = new ObservableAdministrator(target);
   }
-  target.adm.cache(key, target[key]);
+  const value = target[key]
+  if(typeof value === 'object') {
+    observable(value)
+  }
+  target.adm.cache(key, value);
   Object.defineProperty(target, key, {
     get: function(){
       return target.adm.get(key);
@@ -47,3 +51,5 @@ export const observable = target => {
   }
   return target
 };
+
+window.observable = observable
