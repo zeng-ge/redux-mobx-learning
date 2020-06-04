@@ -12,7 +12,7 @@ export default function App(){
       <TodoComponent />
       <TodoWithStoreComponent store={store}/>
       <Provider store={store}>
-        <ReduxTodoComponent/>
+        <ReduxTodoComponent />
       </Provider>
     </div>
   )
