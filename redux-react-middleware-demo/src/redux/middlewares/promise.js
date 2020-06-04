@@ -1,11 +1,9 @@
 export default ({getState, dispatch}) => next => action => {
   if(action.then) {
-    action.then(dispatch)
-    return;
+    return action.then(dispatch)
   }
   if(action.payload && action.payload.then) {
-    action.payload.then(dispatch)
-    return;
+    return action.payload.then(dispatch)
   }
   next(action);
 };

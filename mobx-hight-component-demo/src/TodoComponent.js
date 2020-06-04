@@ -3,7 +3,7 @@ import connect from './connect'
 import { observable } from './observable'
 export class TodoComponent extends React.Component{
   constructor(props){
-    super()
+    super(props)
     this.todoStore = observable({count: 0})
     window.todoStore = this.todoStore
   }
