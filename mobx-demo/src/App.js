@@ -1,4 +1,6 @@
 import { autorun, Reaction, observable, action } from 'mobx'
+window.observable = observable
+
 export default class App{
   constructor(){
     this.rootEl = document.querySelector('#root')

@@ -10,6 +10,7 @@ export const createStore = (reducer, state, middlewares) => {
       listeners.splice(index, 1)
     }
   };
+  // connect=>Parent connect=>Child
   const dispatch = action => {
     currentState = reducer(currentState, action)
     listeners.forEach(listener => {
@@ -21,6 +22,8 @@ export const createStore = (reducer, state, middlewares) => {
   /***
    * middleware格式：
    * {getState, dispatch} => nextMiddleware => action => {}
+   * 
+   * A => B => C => dispatch
    */
   if(middlewares && middlewares.length > 0){
     const reduceFunction = middlewares

@@ -4,7 +4,7 @@ const slice = createSlice({
   name: 'Gamer',
   initialState: { name: '', address: '' },
   reducers: {
-    updateName(state, name) {
+    updateName(state, name) { // {type: 'Gamer/updateName'}
       return {...state, name}
     },
     updateAdress(state, address) {

@@ -41,9 +41,11 @@ export const observable = source => {
   }
   return new Proxy(source, {
     get(target, key){
+      console.log('get', key)
       return target.adm.get(key);
     },
     set(target, key, value){
+      console.log('set', key, value)
       target.adm.set(key, value);
       return true
     }
