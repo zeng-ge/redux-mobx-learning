@@ -1,13 +1,12 @@
 import React from 'react'
-import { Reaction } from 'mobx'
+import { Reaction } from '../Reaction'
 
-let count = 1
 export const observer = (mapStoreToProps, mapActionToProps) => WrapperComponent => {
 
   class HightObserverComponent extends React.Component{
     constructor(props) {
       super(props)
-      this.reaction = new Reaction(`hight-observer-component-${++count}`, () =>{
+      this.reaction = new Reaction(() =>{
         this.forceUpdate()
       })
     }
@@ -15,6 +14,7 @@ export const observer = (mapStoreToProps, mapActionToProps) => WrapperComponent 
       this.reaction.dispose()
     }
     render() {
+      console.log('render')
       let wrapperComponentElement = null
       this.reaction.track(() => {
         const { children, store, ...props } = this.props

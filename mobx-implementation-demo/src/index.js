@@ -13,19 +13,18 @@ class Hello{
     this.name += 1
   }
 }
+const hello = new Hello()
+window.hello = hello
 
 const todo = observable({ count: 0, name: 'sky' })
-const hello = new Hello()
 const reaction = new Reaction(() => {
-  // const name = todo.count % 2  ===0 ? todo.name : '---'
-  // console.log(`todo count: ${todo.count}, name: ${name}`)
-  console.log('hello', hello.name)
+  const name = todo.count % 2  ===0 ? todo.name : '---'
+  console.log(`todo count: ${todo.count}, name: ${name}`)
+  // console.log('hello', hello.name)
 })
-window.hello = hello
+reaction.run()
 window.todo = todo
 window.reaction = reaction
-reaction.run()
-window.action = action
 
 const user = new User()
 ReactDOM.render(

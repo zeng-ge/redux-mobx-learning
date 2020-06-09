@@ -1,14 +1,12 @@
-import { observable, computed, action } from 'mobx'
+import { action } from '../mobx/action'
+import { observable } from '../mobx/observable'
+
 
 export default class User {
 
   @observable count = 0
 
   @observable name = "sky"
-
-  @computed get length() {
-    return this.name.length
-  }
 
   increase = () => {
     this.count++
