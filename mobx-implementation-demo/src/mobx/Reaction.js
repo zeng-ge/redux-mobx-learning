@@ -18,7 +18,6 @@ export class Reaction {
   observables = []
   prevObservables = []
   destroyed = false
-  running = false
   
   constructor(trackFunction) {
     this.trackFunction = trackFunction
@@ -53,7 +52,6 @@ export class Reaction {
 
     this.normalizeDependences()
     currentReaction = prevReaction;
-    this.running = false
   }
 
   normalizeDependences() {
