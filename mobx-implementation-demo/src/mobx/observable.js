@@ -1,11 +1,17 @@
 import { ObservableValue } from './observableValue'
+import { isPlainObject } from 'lodash'
 import observableDecorator from './observableDecorator'
 
 export const observable = function(target, property){
   if(property) {
     return observableDecorator.apply(null, arguments)
   }
-  return observableObject(target)
+
+  if(isPlainObject(target)) {
+    return observableObject(target)
+  }
+  
+  return target
 }
 
 export const observableObject = target => {

@@ -9,6 +9,10 @@ const createProxy = target => {
     set(value){
       console.log('proxy set')
       target['name'] = value
+    },
+    deleteProperty(target, key){
+      console.log('delete property')
+      return delete target[key]
     }
   })
   return proxy

@@ -1,9 +1,10 @@
 import { reportDependence, reportChanges } from './Reaction'
+import { observable } from './observable'
 export class ObservableValue {
   observers = []
   value = null
   constructor(value) {
-    this.value = value
+    this.value = observable(value)
   }
   get() {
     reportDependence(this)
