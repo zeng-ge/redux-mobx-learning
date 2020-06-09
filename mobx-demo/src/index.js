@@ -6,9 +6,9 @@ import App from './App'
 import ReactApp from './ReactApp'
 
 window.observable = observable
-// window.addEventListener('load', () => new App())
+window.addEventListener('load', () => new AutoRunApp())
 
-ReactDOM.render(
-    <ReactApp />,
-  document.getElementById('root')
-);
+// ReactDOM.render(
+//     <ReactApp />,
+//   document.getElementById('root')
+// );

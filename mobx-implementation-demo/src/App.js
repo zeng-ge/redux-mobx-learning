@@ -1,5 +1,5 @@
 import React from'react'
-import { observer } from './observer'
+import { observer } from './mobx/react/observer'
 
 export class App extends React.Component{
   render() {

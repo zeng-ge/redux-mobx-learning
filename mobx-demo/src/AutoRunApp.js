@@ -5,6 +5,9 @@ export default class App{
     this.rootEl = document.querySelector('#root')
 
     this.userStore = window.userStore = observable({count: 0})
+    /***
+     * 执行this.render时收集依赖的属性，只有依赖的属性数据变化时才会更新
+     */
     autorun(this.render)
 
     this.registerEvents()
@@ -21,7 +24,7 @@ export default class App{
   }
 
   actionBundleAdd(){
-    action(() => this.bundleAdd())
+    action(() => this.bundleAdd())()
   }
 
   registerEvents(){
